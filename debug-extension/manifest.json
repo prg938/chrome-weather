@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Debug Extension",
+  "description": "Debugger for Chrome Extension Popup. Watches webpack-dev-server (at http://localhost:3000). Reloads page on changes",
+  "version": "1.0.0",
+  "icons": {"128": "icon_128.png"},
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "background.html"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": ["https://*/*", "http://*/*"],
+  "content_security_policy": "script-src 'self' http://localhost:3000; object-src 'self'"
+}
