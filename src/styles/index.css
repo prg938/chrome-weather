@@ -6,10 +6,20 @@ body {
 }
 
 .gw-temperature {
-  width: 100%;
-  text-align: center;
+  margin: 20px 0;
+}
+
+.gw-temperature .gw-temperature__wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.gw-temperature .gw-temperature__value {
   font-size: 54px;
   font-weight: 600;
+}
+.gw-temperature .gw-temperature__icon {
+  display: flex;
+  align-items: center;
 }
 
 .gw-stats {
