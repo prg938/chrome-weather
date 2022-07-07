@@ -4,11 +4,13 @@ body {
   font-family: 'Roboto';
   color: #b3b3b3;
 }
+body.grabbing { cursor: grabbing; }
 
+
+/*gw-temperature*/
 .gw-temperature {
   margin: 20px 0;
 }
-
 .gw-temperature .gw-temperature__wrapper {
   display: flex;
   justify-content: space-around;
@@ -21,6 +23,8 @@ body {
   display: flex;
   align-items: center;
 }
+/*gw-temperature*/
+
 
 .gw-stats {
   display: flex;
@@ -28,39 +32,46 @@ body {
   font-size: 14px;
 }
 
-.tab-container {
+/*tabber*/
+.tabber {
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 14px;
 }
-.tab-container .tab {
+.tabber__content {
+  margin-top: 20px;
+}
+.tabber__content a {
+  text-decoration: none;
+  color: rgb(105, 103, 221);
+}
+.tabber__content a:hover {
+  text-decoration: underline;
+}
+.tabber__tab {
   display: inline-block;
   padding: 0 25px;
 }
-.tab .tab-text {
-  transition: all .1s ease-in-out;
-  cursor: pointer;
-  font-weight: 500;
-}
-.tab.current .tab-text { border-bottom: 3px solid #4D431D; }
-.tab:first-child { padding-left: 0; }
-.tab:last-child { padding-right: 0; }
-.tab-container .tab-line {
-  border-right: 1px solid transparent;
-}
-.tab-container .tab-text {
-  padding-bottom: 7px;
+.tabber__tab:first-child { padding-left: 0; }
+.tabber__tab:last-child { padding-right: 0; }
+
+.tabber__tab .tabber__text {
   border-bottom: 3px solid transparent;
+  padding-bottom: 7px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
 }
+.tabber__tab.tabber__tab_current .tabber__text {
+  border-bottom: 3px solid rgb(105, 103, 221);
+}
+/*tabber*/
 
-.tabs-content { margin-top: 20px; }
-.tab-content { display: none; }
-.tab-content.current { display: block; }
 
+/*chart-container*/
 .chart-container {
   position: relative;
   overflow: hidden;
 }
-
 .chart-container > .chart-container__tooltip {
   position: absolute;
   background-color: #D7D7D7;
@@ -74,11 +85,13 @@ body {
   opacity: 0;
   white-space: nowrap;
 }
+/*chart-container*/
 
+
+/*chartminified-container*/
 .chartminified-container {
   position: relative;
 }
- 
 .chartminified-container > .chartminified-container__viewbox {
   position: absolute;
   left: 0;
@@ -88,6 +101,7 @@ body {
   height: 100%;
   cursor: grab;
 }
-
-.chartminified-container > .chartminified-container__viewbox.grabbing,
-body.grabbing { cursor: grabbing; }
+.chartminified-container > .chartminified-container__viewbox.grabbing { 
+  cursor: grabbing;
+}
+/*chartminified-container*/

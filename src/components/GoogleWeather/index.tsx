@@ -10,7 +10,8 @@ import GoogleWeatherPrecipitation from './GoogleWeatherPrecipitation'
 import GoogleWeatherHumidity from './GoogleWeatherHumidity'
 import GoogleWeatherWind from './GoogleWeatherWind'
 import GoogleWeatherOutside from './GoogleWeatherOutside'
-import GoogleWeatherTabs from './GoogleWeatherTabs'
+import Tabber from './Tabber'
+import Chart from './Chart'
 import GoogleWeatherParser from './GoogleWeatherParser'
 import {px} from '../../utils'
 import settings from '../../settings'
@@ -36,9 +37,8 @@ const GoogleWeather: React.FunctionComponent = () => {
           <GoogleWeatherOutside name="outside" />
         </div>
       </div>
-      <div>
-        <GoogleWeatherTabs />
-      </div>
+      <Tabber list={[['CHART', <Chart />]]} />
+      <Tabber list={[['VERSION', <div>GoogleWeatherPlugin <a href="https://github.com/gentype/google-weather-ts" target="_blank" rel="noreferrer">v1.0</a></div>], ['DEVELOPER', <div><a href="https://github.com/gentype" target="_blank" rel="noreferrer">@gentype</a></div>]]} />
     </div>
   </GoogleWeatherContext.Provider>
 }

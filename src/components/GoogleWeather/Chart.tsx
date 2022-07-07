@@ -133,7 +133,7 @@ class Chart extends React.Component<IChartProps> {
       if (notMinifiedAndGreaterZero) {
         dasharrayLines.push(<line style={dasharrayLine.style} x1={x} y1={y} x2={x} y2={this.H} id={`${dasharrayLine.prefix}${i}`} />)
         circles.push(<circle style={circle.style} cx={x} cy={y} r={circle.r} data-index={i} onMouseOver={this.circleEvent} onMouseOut={this.circleEvent} onClick={this.circleEvent} />)
-        texts.push(<text style={text.style} x={x - 5} y={y - 15}>{tm}{'°'}</text>)
+        texts.push(<text style={text.style} x={x - 5} y={y < 25 ? y + 25 : y - 15}>{tm}{'°'}</text>)
       }
     }
     return {circles, lines, texts, polygons, dasharrayLines}

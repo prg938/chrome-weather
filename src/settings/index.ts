@@ -1,7 +1,7 @@
 
 const settings = {
   windowW: 460,
-  windowH: 480,
+  windowH: 540,
   chartW: 2500,
   chartH: 200,
   chartMinifiedH: 50,
