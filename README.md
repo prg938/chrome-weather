@@ -1,2 +1,2 @@
 # TODO:
-1. Update statistics information by clicking on circle using Context
+1. Update statistics information (using Context) by clicking on circle
