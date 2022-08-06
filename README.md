@@ -1,2 +1,3 @@
 # TODO:
-1. Update statistics information (using Context) by clicking on circle
+1. update stat (using Context) when circle is clicked
+2. fix toolip when chart is moved
