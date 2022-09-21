@@ -1,5 +1,4 @@
 
-import '@fontsource/roboto'
 import '../../styles/index.css'
 import {useState, useEffect} from 'react'
 import {GoogleWeatherContext} from './Contexts'

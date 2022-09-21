@@ -22,8 +22,6 @@ interface ICoordinates {
   p4y: number
 }
 
-// TODO:
-// 3) update gwc / update-button
 class Chart extends React.Component<IChartProps> {
 
   constructor(props: IChartProps) {
@@ -60,7 +58,7 @@ class Chart extends React.Component<IChartProps> {
     line: {style: {stroke: '#FFCC00', strokeWidth: 3}},
     lineMinified: {style: {stroke: '#FFCC00', strokeWidth: 1}},
     circle: {r: 6, style: {fill: '#FFCC00', cursor: 'pointer'}},
-    text: {style: {fill: '#b3b3b3', font: 'bold 14px "Open Sans"'}},
+    text: {style: {fill: '#b3b3b3', font: 'bold 14px "Roboto"'}},
     polygon: {style: {fill: '#4D431D', strokeWidth: 1, stroke: '#4D431D'}},
     viewbox: {class: 'chartminified-container__viewbox'},
     grabbing: {class: 'grabbing'}
