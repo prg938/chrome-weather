@@ -37,7 +37,7 @@ const GoogleWeather: React.FunctionComponent = () => {
         </div>
       </div>
       <Tabber list={[['CHART', <Chart />]]} />
-      <Tabber list={[['VERSION', <div>GoogleWeatherPlugin <a href="https://github.com/gentype/google-weather-ts" target="_blank" rel="noreferrer">v1.0</a></div>], ['DEVELOPER', <div><a href="https://github.com/gentype" target="_blank" rel="noreferrer">@gentype</a></div>]]} />
+      <Tabber list={[['INFO', <div>This plugin parses weather page from Google, generates chart & data. <a href="https://github.com/gentype/google-weather-ts" target="_blank" rel="noreferrer">View source code</a></div>], ['DEVELOPER', <div><a href="https://github.com/ivnfrontend" target="_blank" rel="noreferrer">https://github.com/ivnfrontend</a></div>]]} />
     </div>
   </GoogleWeatherContext.Provider>
 }
