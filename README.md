@@ -1,4 +1,5 @@
-![How it looks](https://user-images.githubusercontent.com/7237762/191551358-50fdd68a-5823-4b11-b26a-5b77fc626202.png)
+
+![Без имени](https://user-images.githubusercontent.com/7237762/191551961-89bfb3da-d574-4db0-9a77-469b6089dc68.png)
 
 # TODO:
 1. update stat (using Context) when circle is clicked
