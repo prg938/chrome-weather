@@ -1,9 +1,4 @@
 
-interface IChartProps {
-  settings?: {[key: string]: any}
-  gwc: IGoogleWeatherContext
-}
-
 interface IGoogleWeatherParserData {
   temperature: any
   geo: any
@@ -11,16 +6,14 @@ interface IGoogleWeatherParserData {
   humidity: any
   wind: any
   outside: any
-  trange: {tm: any, dts: any, p: any, h: any, c: any, ws: any}[]
+  trange: {tm: any, dts: any, p: any, h: any, c: any, ws: any, iu: any}[]
 }
 
 interface IGoogleWeatherContext {
   data: IGoogleWeatherParserData | {}
+  circleIndex: number
+  update: (circleIndex: number) => any
+  geo: any
 }
-
-interface IInitialClickState {
-  left: number,
-  pgx: number
-}
-
-export type {IGoogleWeatherContext, IGoogleWeatherParserData, IChartProps, IInitialClickState}
+ 
+export type {IGoogleWeatherContext, IGoogleWeatherParserData}

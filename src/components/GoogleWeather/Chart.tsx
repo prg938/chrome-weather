@@ -1,9 +1,14 @@
 
 import React from 'react'
-import {IChartProps, IGoogleWeatherParserData, IInitialClickState} from '../../types'
+import settings from '../../settings'
+import {IGoogleWeatherContext, IGoogleWeatherParserData} from '../../types'
 import {GoogleWeatherContext} from './Contexts'
 import {style, selector, className, es, px, computed} from '../../utils'
-import settings from '../../settings'
+
+interface IInitialClickState {
+  left: number,
+  pgx: number
+}
 
 interface ICoordinates {
   x: number
@@ -22,23 +27,30 @@ interface ICoordinates {
   p4y: number
 }
 
+interface IChartProps {
+  settings?: {[key: string]: any}
+  gwc: IGoogleWeatherContext
+}
+
 class Chart extends React.Component<IChartProps> {
 
   constructor(props: IChartProps) {
     super(props)
     this.circleEvent = this.circleEvent.bind(this)
     this.viewboxEvent = this.viewboxEvent.bind(this)
+    this.initInitialCoordinates()
   }
 
   initialClickState: React.MutableRefObject<IInitialClickState | null | undefined> = React.createRef()
   viewboxRef = React.createRef<HTMLDivElement>()
-  chartRef = React.createRef<SVGSVGElement>()
+  chartWrapperRef = React.createRef<HTMLDivElement>()
   W = settings.chartW  
   H = settings.chartH
   mW = settings.windowW
   mH = settings.chartMinifiedH
+  prevCircleIndex = 0
   animation = {frameId: 0, duration: 1000, fn: (t: number) => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t}
-  fetchedData = false
+  animationInitialized = false
   
   coordinates = {
     large: [] as ICoordinates[][],
@@ -53,16 +65,20 @@ class Chart extends React.Component<IChartProps> {
   }
 
   styles = {
-    dasharrayLine: {style: {stroke: 'black', strokeWidth: 1, strokeDasharray: '3', opacity: 0}, prefix: '__dasharray-'},
+    dasharrayLine: {style: {stroke: '#cfcfcf', strokeWidth: 1, strokeDasharray: '3', opacity: 0}, prefix: '__dasharray-'},
     tooltip: {class: 'chart-container__tooltip', prefix: '__tooltip'},
-    line: {style: {stroke: '#FFCC00', strokeWidth: 3}},
-    lineMinified: {style: {stroke: '#FFCC00', strokeWidth: 1}},
-    circle: {r: 6, style: {fill: '#FFCC00', cursor: 'pointer'}},
+    line: {style: {stroke: 'rgb(201, 209, 217)', strokeWidth: 3}},
+    lineMinified: {style: {stroke: 'rgb(201, 209, 217)', strokeWidth: 1}},
+    circle: {r: 6, style: {fill: 'rgb(201, 209, 217)'}, activeColor: '#cfcfcf', prefix: '__circle-'},
     text: {style: {fill: '#b3b3b3', font: 'bold 12px "Roboto"'}},
-    polygon: {style: {fill: '#4D431D', strokeWidth: 1, stroke: '#4D431D'}},
+    polygon: {style: {fill: '#16181d', strokeWidth: 1, stroke: '#16181d'}},
     viewbox: {class: 'chartminified-container__viewbox'},
     grabbing: {class: 'grabbing'}
   }
+
+  cx = (i: number, W: number, L: number) => i * (W / L)
+
+  cy = (y: number, ymin: number, ymax: number, H: number) => (H / (this.diff(ymin, ymax) || Infinity)) * this.diff(ymin, y)
 
   diff(min: number, max: number) {
     const {abs, sign} = Math
@@ -80,15 +96,19 @@ class Chart extends React.Component<IChartProps> {
     }
     return [min, max]
   }
-
-  cx(i: number, W: number, L: number) {
-    const dx = W / L
-    return i * dx
+  
+  pushCoordinates(temperatureList: number[]) {
+    const {W, H, mW, mH} = this
+    this.coordinates.large.push(this.generateCoordinates(temperatureList, W, H))
+    this.coordinates.minified.push(this.generateCoordinates(temperatureList, mW, mH))
   }
 
-  cy(y: number, ymin: number, ymax: number, H: number) {
-    const dy = H / (this.diff(ymin, ymax) || Infinity)
-    return dy * this.diff(ymin, y)
+  initInitialCoordinates() {
+    this.pushCoordinates([])
+  }
+
+  initEndCoordinates() {
+    this.pushCoordinates((this.props.gwc.data as IGoogleWeatherParserData).trange.map(o => +o.tm).slice(0, settings.chartDotLimit))
   }
 
   generateCoordinates(temperatureList: number[], W: number, H: number): ICoordinates[] {
@@ -118,20 +138,20 @@ class Chart extends React.Component<IChartProps> {
   }
   
   generateChartElements(coordinates: ICoordinates[], minified: boolean) {
-    const {gwc: {data}} = this.props
+    const data = this.props.gwc.data
     const containsTrange = 'trange' in data
     const {dasharrayLine, line, lineMinified, circle, text, polygon} = this.styles
-    const [circles, lines, texts, polygons, dasharrayLines]: any = [[], [], [], [], [], []]
+    const [circles, lines, texts, polygons, dasharrayLines]: any = [[], [], [], [], []]
     for (let i = 0; i < coordinates.length; i++) {
-      const {x, xNext, y, yNext, textX, textY, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y} = coordinates[i]
+      const {x, xNext, y, yNext, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y} = coordinates[i]
       const notMinifiedAndGreaterZero = !minified && i > 0
       const tm = containsTrange ? data.trange[i].tm : 0
-      polygons.push(<polygon style={polygon.style} points={`${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y} ${p4x},${p4y}`} />)
-      lines.push(<line style={minified ? lineMinified.style : line.style} x1={x} y1={y} x2={xNext} y2={yNext} />)
+      polygons.push(<polygon style={polygon.style} points={`${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y} ${p4x},${p4y}`} key={i} />)
+      lines.push(<line style={minified ? lineMinified.style : line.style} x1={x} y1={y} x2={xNext} y2={yNext} key={i} />)
       if (notMinifiedAndGreaterZero) {
-        dasharrayLines.push(<line style={dasharrayLine.style} x1={x} y1={y} x2={x} y2={this.H} id={`${dasharrayLine.prefix}${i}`} />)
-        circles.push(<circle style={circle.style} cx={x} cy={y} r={circle.r} data-index={i} onMouseOver={this.circleEvent} onMouseOut={this.circleEvent} onClick={this.circleEvent} />)
-        texts.push(<text style={text.style} x={x - 5} y={y < 25 ? y + 25 : y - 15}>{tm}{'°'}</text>)
+        dasharrayLines.push(<line style={dasharrayLine.style} x1={x} y1={y} x2={x} y2={this.H} id={dasharrayLine.prefix.concat(String(i))} key={i} />)
+        circles.push(<circle style={circle.style} cx={x} cy={y} r={circle.r} data-index={i} id={circle.prefix.concat(String(i))} onMouseOver={this.circleEvent} onMouseOut={this.circleEvent} key={i} />)
+        texts.push(<text style={text.style} x={x - 5} y={y < 25 ? y + 25 : y - 15} key={i}>{tm}{'°'}</text>)
       }
     }
     return {circles, lines, texts, polygons, dasharrayLines}
@@ -145,7 +165,7 @@ class Chart extends React.Component<IChartProps> {
     const eventType = event.type
     const body = document.body
     const viewboxElement = this.viewboxRef.current as HTMLDivElement
-    const chartRef = this.chartRef.current as SVGSVGElement
+    const chartWrapperRef = this.chartWrapperRef.current as HTMLDivElement
     event.preventDefault()
     event.stopPropagation()
     switch (eventType) {
@@ -176,92 +196,94 @@ class Chart extends React.Component<IChartProps> {
         else computedLeft = currentLeft
         computedTranslateX = -computedLeft * ((W - mW) / (mW - (mW * (mW / W))))
         style(viewboxElement, {left: px(computedLeft)})
-        style(chartRef, {transform: `translate(${computedTranslateX}px, 0)`})
+        style(chartWrapperRef, {transform: `translate(${computedTranslateX}px, 0)`})
         break
     }
   }
 
   circleEvent(event: React.MouseEvent<SVGCircleElement>) {
-    const [MOUSEOVER, MOUSEOUT, CLICK] = ['mouseover', 'mouseout', 'click']
+    const [MOUSEOVER, MOUSEOUT] = ['mouseover', 'mouseout']
     const {gwc: {data}} = this.props
-    const {dasharrayLine, tooltip} = this.styles
+    const {dasharrayLine, tooltip, circle} = this.styles
     const eventType = event.type
     const circleElement = event.currentTarget
     const circleIndex = Number(circleElement.dataset.index)
-    const [dasharrayElement, tooltipElement] = [selector(`${dasharrayLine.prefix}${circleIndex}`) as HTMLElement, selector(tooltip.prefix) as HTMLElement]
+    const selectDasharrayTooltopCircle = (circleIndex: number) => {
+      const stringifiedCircleIndex = String(circleIndex)
+      return [
+        selector(dasharrayLine.prefix.concat(stringifiedCircleIndex)),
+        selector(tooltip.prefix),
+        selector(circle.prefix.concat(stringifiedCircleIndex)) 
+      ] as HTMLElement[]
+    }
+    const [dasharrayElement, tooltipElement] = selectDasharrayTooltopCircle(circleIndex)
     if (eventType === MOUSEOVER) {
-      const {dts, tm, p, h, ws, c} = (data as IGoogleWeatherParserData).trange[circleIndex]
+      const [prevDasharrayElement, prevTooltipElement, prevCircleElement] = selectDasharrayTooltopCircle(this.prevCircleIndex)
+      const {dts, tm} = (data as IGoogleWeatherParserData).trange[circleIndex]
       tooltipElement.innerText = dts
       const tw = tooltipElement.offsetWidth
       const th = tooltipElement.offsetHeight
       const cx = Number(circleElement.getAttribute('cx'))
       const cy = Number(circleElement.getAttribute('cy'))
+      if (prevDasharrayElement) style(prevDasharrayElement, {opacity: 0})
+      if (prevTooltipElement) style(prevTooltipElement, {opacity: 0, visibility: 'hidden'})
+      if (prevCircleElement) style(prevCircleElement, {fill: circle.style.fill})
       style(dasharrayElement, {opacity: 1})
-      style(tooltipElement, {opacity: 1, visibility: 'visible', left: px(cx - tw / 2), top: px(cy - th - 10)})
+      style(tooltipElement, {opacity: 1, visibility: 'visible', left: px(cx - tw / 2), top: px(cy < 32 ? cy + 10: cy - th - 10)})
+      style(circleElement, {fill: circle.activeColor})
+      this.props.gwc.update(circleIndex)
     }
     else if (eventType === MOUSEOUT) {
-      style(dasharrayElement, {opacity: 0})
-      style(tooltipElement, {opacity: 0, visibility: 'hidden'})
+      this.prevCircleIndex = circleIndex
     }
-    else if (eventType === CLICK) {
-      console.log((data as IGoogleWeatherParserData) )
+  }
+  
+  animationCompleted = false
+  preventComponentUpdate = false
+
+  shouldComponentUpdate() {
+    if (this.preventComponentUpdate) {
+      return false
+    }
+    else {
+      if (this.animationCompleted) this.preventComponentUpdate = true
+      return true
     }
   }
 
   render() {
-    const {gwc: {data}} = this.props
-    const containsData = 'trange' in data
+    const SVGNS = 'http://www.w3.org/2000/svg'
     const {tooltip, viewbox} = this.styles
     const {W, H, mW, mH} = this
-    const chartContainerStyle = {width: px(mW)}
-    const chartminifiedContainerStyle = {width: px(mW), height: px(mH)}
-    const viewboxStyle = {width: px(mW * (mW / W))}
-    const SVGNS = 'http://www.w3.org/2000/svg'
+    const [coordinatesLarge, coordinatesMinified] = [
+      this.animationInitialized ? this.state.coordinates.large : this.coordinates.large[0],
+      this.animationInitialized ? this.state.coordinates.minified : this.coordinates.minified[0]
+    ]
+    const {circles, lines, texts, polygons, dasharrayLines} = this.generateChartElements(coordinatesLarge, false)
+    const {polygons: polygonsMinified, lines: linesMinified} = this.generateChartElements(coordinatesMinified, true)
     
-    const chartWrapper = ({circles, lines, texts, polygons, dasharrayLines, polygonsMinified, linesMinified}: any) => <div>
-      <div className="chart-container" style={chartContainerStyle}>
-        <svg width={W} height={H} xmlns={SVGNS} ref={this.chartRef}>
-          <g>{polygons}{lines}{dasharrayLines}{circles}{texts}</g>
-        </svg>
-        <div className={tooltip.class} id={tooltip.prefix}></div>
+    return <React.Fragment>
+      <div className="chart-container" style={{width: px(mW)}}>
+        <div className="chart-wrapper" ref={this.chartWrapperRef}>
+          <svg xmlns={SVGNS} width={W} height={H}>
+            <g>{polygons}{lines}{dasharrayLines}{circles}{texts}</g>
+          </svg>
+          <div className={tooltip.class} id={tooltip.prefix}></div>
+        </div>
       </div>
-      <div className="chartminified-container" style={chartminifiedContainerStyle}>
-        <svg width={mW} height={mH} xmlns={SVGNS}>
+      <div className="chartminified-container" style={{width: px(mW), height: px(mH)}}>
+        <svg xmlns={SVGNS} width={mW} height={mH}>
           <g>{polygonsMinified}{linesMinified}</g>
         </svg>
-        <div className={viewbox.class} style={viewboxStyle} onMouseDown={this.viewboxEvent} onMouseUp={this.viewboxEvent} ref={this.viewboxRef}></div>
+        <div className={viewbox.class} style={{width: px(mW * (mW / W))}} onMouseDown={this.viewboxEvent} onMouseUp={this.viewboxEvent} ref={this.viewboxRef}></div>
       </div>
-    </div>
-
-    if (containsData === false) {
-      const {large, minified} = this.coordinates
-      large.push(this.generateCoordinates([], W, H))
-      minified.push(this.generateCoordinates([], mW, mH))
-      const {circles, lines, texts, polygons, dasharrayLines} = this.generateChartElements(large[0], false)
-      const {polygons: polygonsMinified, lines: linesMinified} = this.generateChartElements(minified[0], true)
-      return chartWrapper({circles, lines, texts, polygons, dasharrayLines, polygonsMinified, linesMinified})
-    }
-    else if (!this.fetchedData) {
-      const tlist = (data as IGoogleWeatherParserData).trange.map(object => +object.tm).slice(0, settings.chartDotLimit)
-      const {large, minified} = this.coordinates
-      large.push(this.generateCoordinates(tlist, W, H))
-      minified.push(this.generateCoordinates(tlist, mW, mH))
-      const {circles, lines, texts, polygons, dasharrayLines} = this.generateChartElements(large[0], false)
-      const {polygons: polygonsMinified, lines: linesMinified} = this.generateChartElements(minified[0], true)
-      return chartWrapper({circles, lines, texts, polygons, dasharrayLines, polygonsMinified, linesMinified})
-    }
-    else {
-      const {large, minified} = this.state.coordinates
-      const {circles, lines, texts, polygons, dasharrayLines} = this.generateChartElements(large, false)
-      const {polygons: polygonsMinified, lines: linesMinified} = this.generateChartElements(minified, true)
-      return chartWrapper({circles, lines, texts, polygons, dasharrayLines, polygonsMinified, linesMinified})
-    }
+    </React.Fragment>
   }
 
   componentDidUpdate() {
-    // launch animation once
-    if (!this.fetchedData) {
-      this.fetchedData = true
+    if (!this.animationInitialized) {
+      this.animationInitialized = true
+      this.initEndCoordinates()
       const initialTime = Date.now()
       const {duration, fn} = this.animation
       const {large, minified} = this.coordinates
@@ -288,7 +310,7 @@ class Chart extends React.Component<IChartProps> {
         let dx = (currentTime - initialTime) / duration
         if (dx >= 1) {
           dx = 1
-          animationComplete = true
+          this.animationCompleted = animationComplete = true
         }
         const newState = {coordinates: {large: [], minified: []}} as typeof this.state
         newState.coordinates.large = compute(initialLargeCoordinates, endLargeCoordinates, fn(dx))

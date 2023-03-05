@@ -2,42 +2,53 @@
 import '../../styles/index.css'
 import {useState, useEffect} from 'react'
 import {GoogleWeatherContext} from './Contexts'
-import {IGoogleWeatherContext} from '../../types'
-import GoogleWeatherTemperature from './GoogleWeatherTemperature'
-import GoogleWeatherGeo from './GoogleWeatherGeo'
-import GoogleWeatherPrecipitation from './GoogleWeatherPrecipitation'
-import GoogleWeatherHumidity from './GoogleWeatherHumidity'
-import GoogleWeatherWind from './GoogleWeatherWind'
-import GoogleWeatherOutside from './GoogleWeatherOutside'
+import {merge, px} from '../../utils'
+import Temperature from './Temperature'
+import Precipitation from './Precipitation'
+import Humidity from './Humidity'
+import Wind from './Wind'
+import Time from './Time'
 import Tabber from './Tabber'
 import Chart from './Chart'
-import GoogleWeatherParser from './GoogleWeatherParser'
-import {px} from '../../utils'
 import settings from '../../settings'
+import {GoLogoGithub, GoLinkExternal} from 'react-icons/go'
 
 const GoogleWeather: React.FunctionComponent = () => {
-  const [googleWeatherContext, updateGoogleWeatherContext] = useState<IGoogleWeatherContext>({data: {}})
-  
+
+  const [data, update] = useState<any>({
+    data: {},
+    circleIndex: null,
+    geo: null
+  })
+  const upd = (data: any) => update((prevData: any) => merge(prevData, data))
+  const gwc = merge(data, {update: (circleIndex: number) => upd({circleIndex})})
+
   useEffect(() => {
-    (async () => updateGoogleWeatherContext({data: await GoogleWeatherParser.get()}))()
+    chrome.runtime.sendMessage({type: 'data'}, response => {
+      if (response) {
+        const {data, geo} = response
+        chrome.action.setBadgeText({text: data.temperature + '°'})
+        upd({data, geo})
+      }
+      else document.write('Cannot fetch data from background.js')
+    })
   }, [])
 
-  return <GoogleWeatherContext.Provider value={googleWeatherContext}>
+  return <GoogleWeatherContext.Provider value={gwc}>
     <div style={{width: px(settings.windowW), height: px(settings.windowH)}}>
       <div className="gw-top">
         <div className="gw-temperature">
-          <GoogleWeatherTemperature />
+          <Temperature />
         </div>
         <div className="gw-stats">
-          <GoogleWeatherGeo name="geo" />
-          <GoogleWeatherPrecipitation name="precipitation" />
-          <GoogleWeatherHumidity name="humidity" />
-          <GoogleWeatherWind name="wind" />
-          <GoogleWeatherOutside name="outside" />
+          <Time name={'time'} />
+          <Precipitation name={'precipitation'} />
+          <Humidity name={'humidity'} />
+          <Wind name={'wind'} />
         </div>
       </div>
-      <Tabber list={[['CHART', <Chart />]]} />
-      <Tabber list={[['INFO', <div>This plugin parses weather page from Google, generates chart & data. <a href="https://github.com/gentype/google-weather-ts" target="_blank" rel="noreferrer">View source code</a></div>], ['DEVELOPER', <div><a href="https://github.com/ivnfrontend" target="_blank" rel="noreferrer">https://github.com/ivnfrontend</a></div>]]} />
+      <Chart />
+      <Tabber list={[[<GoLinkExternal />, <div><a href="https://github.com/prg938/chrome-weather" target="_blank" rel="noreferrer">/chrome-weather</a></div>], [<GoLogoGithub />, <div><a href="https://github.com/prg938" target="_blank" rel="noreferrer">github.com/prg938</a></div>]]} />
     </div>
   </GoogleWeatherContext.Provider>
 }

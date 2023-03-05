@@ -42,8 +42,10 @@ export const selector = (selector: string) => document.querySelector(`#${selecto
 
 export const className = (node: any, className: string) => node.setAttribute('class', node.className = className)
 
-export const style = (node: any, styleSet: {[key: string]: any}) => Object.keys(styleSet).forEach(property => node.style[property as any] = styleSet[property])
+export const style = (node: any, styleSet: {[key: string]: any}) => Object.keys(styleSet).forEach(property => node.style[property] = styleSet[property])
 
 export const isArray = (array: any) => Object.prototype.toString.call(array) === '[object Array]'
 
 export const isBoolean = (bool: boolean) => bool === true || bool === false
+
+export const merge = (...objects: any[]) => objects.reduce((pv, cv) => ({...pv, ...cv}), {})
