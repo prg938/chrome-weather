@@ -1,4 +1,4 @@
-(this["webpackJsonpgoogle-weather-ts"] = this["webpackJsonpgoogle-weather-ts"] || []).push([["main"],{
+(this["webpackJsonpchrome-weather"] = this["webpackJsonpchrome-weather"] || []).push([["main"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css":
 /*!**************************************************************************************************************************!*\
@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Chart.tsx";
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Chart.tsx";
 
 
 
@@ -898,7 +898,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Humidity.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Humidity.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -1028,6 +1028,141 @@ if (true) {
 
 /***/ }),
 
+/***/ "./src/components/GoogleWeather/Links.tsx":
+/*!************************************************!*\
+  !*** ./src/components/GoogleWeather/Links.tsx ***!
+  \************************************************/
+/*! exports provided: LinkExternal, LinkGithub */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LinkExternal", function() { return LinkExternal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LinkGithub", function() { return LinkGithub; });
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Links.tsx";
+
+const LinkExternal = () => /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+  children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("a", {
+    href: "https://github.com/prg938/chrome-weather",
+    target: "_blank",
+    rel: "noreferrer",
+    children: "/chrome-weather"
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 3,
+    columnNumber: 3
+  }, undefined)
+}, void 0, false, {
+  fileName: _jsxFileName,
+  lineNumber: 2,
+  columnNumber: 64
+}, undefined);
+_c = LinkExternal;
+const LinkGithub = () => /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("div", {
+  children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("a", {
+    href: "https://github.com/prg938",
+    target: "_blank",
+    rel: "noreferrer",
+    children: "github.com/prg938"
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 7,
+    columnNumber: 3
+  }, undefined)
+}, void 0, false, {
+  fileName: _jsxFileName,
+  lineNumber: 6,
+  columnNumber: 62
+}, undefined);
+_c2 = LinkGithub;
+
+var _c, _c2;
+
+__webpack_require__.$Refresh$.register(_c, "LinkExternal");
+__webpack_require__.$Refresh$.register(_c2, "LinkGithub");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
 /***/ "./src/components/GoogleWeather/Loading.tsx":
 /*!**************************************************!*\
   !*** ./src/components/GoogleWeather/Loading.tsx ***!
@@ -1042,7 +1177,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Loading.tsx";
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Loading.tsx";
 
 
 const Loading = ({
@@ -1157,7 +1292,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Outside.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Outside.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -1297,7 +1432,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Precipitation.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Precipitation.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -1444,21 +1579,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Tabber.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Tabber.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
- // <Tabber list={[['CHART', <Chart />], ['DEVELOPER', <div>some text 1</div>]]} />
 
 
-
-// https://beta.reactjs.org/reference/react/memo
-const Tabber = ({
+// <Tabber list={[['A', <Chart />], ['B', <div></div>]]} />
+const Tabber = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["memo"])(_c = _s(({
   list
 }) => {
   _s();
 
-  console.log(1);
   const [currentId, setId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('0');
 
   const specifyClass = id => id === currentId ? 'tabber__tab tabber__tab_current' : 'tabber__tab';
@@ -1466,15 +1598,8 @@ const Tabber = ({
   const findDataTabId = target => {
     if (target) {
       const dataTab = Object(_utils__WEBPACK_IMPORTED_MODULE_1__["attr"])(target)('data-tab');
-
-      if (dataTab) {
-        return dataTab;
-      } else {
-        return findDataTabId(target.parentElement);
-      }
-    } else {
-      return '0';
-    }
+      return dataTab ? dataTab : findDataTabId(target.parentElement);
+    } else return '0';
   };
 
   const containerEvent = event => setId(findDataTabId(event.target));
@@ -1497,12 +1622,12 @@ const Tabber = ({
         children: name
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 46,
+        lineNumber: 36,
         columnNumber: 7
       }, undefined)
     }, indexStringified, false, {
       fileName: _jsxFileName,
-      lineNumber: 45,
+      lineNumber: 35,
       columnNumber: 12
     }, undefined);
   });
@@ -1514,31 +1639,29 @@ const Tabber = ({
       children: tabs
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 51,
+      lineNumber: 41,
       columnNumber: 5
     }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__["jsxDEV"])("div", {
       className: "tabber__content",
       children: content
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 52,
+      lineNumber: 42,
       columnNumber: 5
     }, undefined)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 50,
+    lineNumber: 40,
     columnNumber: 10
   }, undefined);
-};
-
-_s(Tabber, "lEG3D7hSBFCjFDUYn9w9bADlxRI=");
-
-_c = Tabber;
+}, "lEG3D7hSBFCjFDUYn9w9bADlxRI="));
+_c2 = Tabber;
 /* harmony default export */ __webpack_exports__["default"] = (Tabber);
 
-var _c;
+var _c, _c2;
 
-__webpack_require__.$Refresh$.register(_c, "Tabber");
+__webpack_require__.$Refresh$.register(_c, "Tabber$memo");
+__webpack_require__.$Refresh$.register(_c2, "Tabber");
 
 const currentExports = __react_refresh_utils__.getModuleExports(module.i);
 __react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
@@ -1637,7 +1760,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Temperature.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Temperature.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -1831,7 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Time.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Time.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -1981,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\Wind.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\Wind.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -2135,14 +2258,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tabber__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Tabber */ "./src/components/GoogleWeather/Tabber.tsx");
 /* harmony import */ var _Chart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Chart */ "./src/components/GoogleWeather/Chart.tsx");
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../settings */ "./src/settings/index.ts");
-/* harmony import */ var react_icons_go__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-icons/go */ "./node_modules/react-icons/go/index.esm.js");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _Links__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Links */ "./src/components/GoogleWeather/Links.tsx");
+/* harmony import */ var react_icons_go__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-icons/go */ "./node_modules/react-icons/go/index.esm.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\components\\GoogleWeather\\index.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\components\\GoogleWeather\\index.tsx",
     _s = __webpack_require__.$Refresh$.signature();
+
 
 
 
@@ -2175,6 +2300,23 @@ const GoogleWeather = () => {
       circleIndex
     })
   });
+  const links = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => [[/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(react_icons_go__WEBPACK_IMPORTED_MODULE_13__["GoLinkExternal"], {}, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 28,
+    columnNumber: 6
+  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Links__WEBPACK_IMPORTED_MODULE_12__["LinkExternal"], {}, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 28,
+    columnNumber: 26
+  }, undefined)], [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(react_icons_go__WEBPACK_IMPORTED_MODULE_13__["GoLogoGithub"], {}, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 29,
+    columnNumber: 6
+  }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Links__WEBPACK_IMPORTED_MODULE_12__["LinkGithub"], {}, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 29,
+    columnNumber: 24
+  }, undefined)]], []);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     chrome.runtime.sendMessage({
       type: 'data'
@@ -2194,124 +2336,86 @@ const GoogleWeather = () => {
       } else document.write('Cannot fetch data from background.js');
     });
   }, []);
-  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Contexts__WEBPACK_IMPORTED_MODULE_2__["GoogleWeatherContext"].Provider, {
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Contexts__WEBPACK_IMPORTED_MODULE_2__["GoogleWeatherContext"].Provider, {
     value: gwc,
-    children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
+    children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])("div", {
       style: {
         width: Object(_utils__WEBPACK_IMPORTED_MODULE_3__["px"])(_settings__WEBPACK_IMPORTED_MODULE_11__["default"].windowW),
         height: Object(_utils__WEBPACK_IMPORTED_MODULE_3__["px"])(_settings__WEBPACK_IMPORTED_MODULE_11__["default"].windowH)
       },
-      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])("div", {
         className: "gw-top",
-        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])("div", {
           className: "gw-temperature",
-          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Temperature__WEBPACK_IMPORTED_MODULE_4__["default"], {}, void 0, false, {
+          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Temperature__WEBPACK_IMPORTED_MODULE_4__["default"], {}, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 41,
+            lineNumber: 47,
             columnNumber: 11
           }, undefined)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 40,
+          lineNumber: 46,
           columnNumber: 9
-        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
+        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])("div", {
           className: "gw-stats",
-          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Time__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Time__WEBPACK_IMPORTED_MODULE_8__["default"], {
             name: 'time'
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 44,
+            lineNumber: 50,
             columnNumber: 11
-          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Precipitation__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Precipitation__WEBPACK_IMPORTED_MODULE_5__["default"], {
             name: 'precipitation'
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 45,
+            lineNumber: 51,
             columnNumber: 11
-          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Humidity__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Humidity__WEBPACK_IMPORTED_MODULE_6__["default"], {
             name: 'humidity'
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 46,
+            lineNumber: 52,
             columnNumber: 11
-          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Wind__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Wind__WEBPACK_IMPORTED_MODULE_7__["default"], {
             name: 'wind'
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 47,
+            lineNumber: 53,
             columnNumber: 11
           }, undefined)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 49,
           columnNumber: 9
         }, undefined)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 39,
+        lineNumber: 45,
         columnNumber: 7
-      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Chart__WEBPACK_IMPORTED_MODULE_10__["default"], {}, void 0, false, {
+      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Chart__WEBPACK_IMPORTED_MODULE_10__["default"], {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 50,
+        lineNumber: 56,
         columnNumber: 7
-      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(_Tabber__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        list: [[/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(react_icons_go__WEBPACK_IMPORTED_MODULE_12__["GoLinkExternal"], {}, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 23
-        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
-          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("a", {
-            href: "https://github.com/prg938/chrome-weather",
-            target: "_blank",
-            rel: "noreferrer",
-            children: "/chrome-weather"
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 51,
-            columnNumber: 48
-          }, undefined)
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 43
-        }, undefined)], [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])(react_icons_go__WEBPACK_IMPORTED_MODULE_12__["GoLogoGithub"], {}, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 161
-        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("div", {
-          children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxDEV"])("a", {
-            href: "https://github.com/prg938",
-            target: "_blank",
-            rel: "noreferrer",
-            children: "github.com/prg938"
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 51,
-            columnNumber: 184
-          }, undefined)
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 51,
-          columnNumber: 179
-        }, undefined)]]
+      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxDEV"])(_Tabber__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        list: links
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 51,
+        lineNumber: 57,
         columnNumber: 7
       }, undefined)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 38,
+      lineNumber: 44,
       columnNumber: 5
     }, undefined)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 37,
+    lineNumber: 43,
     columnNumber: 10
   }, undefined);
 };
 
-_s(GoogleWeather, "zue0E84lIp3FFZgSvva9RHsSd+I=");
+_s(GoogleWeather, "gwCOoxtUiMTRf0johPyOC4r9Adg=");
 
 _c = GoogleWeather;
 
@@ -2416,7 +2520,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\customHooks\\index.tsx",
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\customHooks\\index.tsx",
     _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -2642,7 +2746,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 __webpack_require__.$Refresh$.setup(module.i);
 
-var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome\\google-weather-ts\\src\\index.tsx";
+var _jsxFileName = "C:\\Users\\Rita\\Desktop\\dev\\chrome-weather\\src\\index.tsx";
 
 
 
@@ -3074,10 +3178,10 @@ if (true) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome\google-weather-ts\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
-__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome\google-weather-ts\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js */"./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
-__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome\google-weather-ts\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
-module.exports = __webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome\google-weather-ts\src\index.tsx */"./src/index.tsx");
+__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome-weather\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome-weather\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js */"./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
+__webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome-weather\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! C:\Users\Rita\Desktop\dev\chrome-weather\src\index.tsx */"./src/index.tsx");
 
 
 /***/ })

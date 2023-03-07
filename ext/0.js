@@ -113,7 +113,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "283813de328431d655dc";
+/******/ 	var hotCurrentHash = "e67e892f1eca6df9356d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -947,7 +947,7 @@
 /******/ 		},
 /******/ 	};
 /******/
-/******/ 	var jsonpArray = this["webpackJsonpgoogle-weather-ts"] = this["webpackJsonpgoogle-weather-ts"] || [];
+/******/ 	var jsonpArray = this["webpackJsonpchrome-weather"] = this["webpackJsonpchrome-weather"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
 /******/ 	jsonpArray.push = webpackJsonpCallback;
 /******/ 	jsonpArray = jsonpArray.slice();

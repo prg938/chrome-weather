@@ -1,6 +1,6 @@
 
 import '../../styles/index.css'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useMemo} from 'react'
 import {GoogleWeatherContext} from './Contexts'
 import {merge, px} from '../../utils'
 import Temperature from './Temperature'
@@ -11,6 +11,7 @@ import Time from './Time'
 import Tabber from './Tabber'
 import Chart from './Chart'
 import settings from '../../settings'
+import {LinkExternal, LinkGithub} from './Links'
 import {GoLogoGithub, GoLinkExternal} from 'react-icons/go'
 
 const GoogleWeather: React.FunctionComponent = () => {
@@ -22,6 +23,11 @@ const GoogleWeather: React.FunctionComponent = () => {
   })
   const upd = (data: any) => update((prevData: any) => merge(prevData, data))
   const gwc = merge(data, {update: (circleIndex: number) => upd({circleIndex})})
+
+  const links = useMemo(() => [
+    [<GoLinkExternal />, <LinkExternal />],
+    [<GoLogoGithub />, <LinkGithub />]
+  ], [])
 
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'data'}, response => {
@@ -48,7 +54,7 @@ const GoogleWeather: React.FunctionComponent = () => {
         </div>
       </div>
       <Chart />
-      <Tabber list={[[<GoLinkExternal />, <div><a href="https://github.com/prg938/chrome-weather" target="_blank" rel="noreferrer">/chrome-weather</a></div>], [<GoLogoGithub />, <div><a href="https://github.com/prg938" target="_blank" rel="noreferrer">github.com/prg938</a></div>]]} />
+      <Tabber list={links} />
     </div>
   </GoogleWeatherContext.Provider>
 }
