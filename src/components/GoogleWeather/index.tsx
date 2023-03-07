@@ -15,7 +15,7 @@ import {LinkExternal, LinkGithub} from './Links'
 import {GoLogoGithub, GoLinkExternal} from 'react-icons/go'
 
 const GoogleWeather: React.FunctionComponent = () => {
-
+  
   const [data, update] = useState<any>({
     data: {},
     circleIndex: null,
