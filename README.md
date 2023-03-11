@@ -10,4 +10,4 @@ Download this repo. Install extension from **ext** folder
 * Geolocation
 * 50 hours of detailed weather information (Temperature/Humidity/Precipitation/Wind)
 
-![ezgif-5-5d1637c746](https://user-images.githubusercontent.com/7237762/223527740-6e182009-ef69-43cd-90f4-24e30c2f9d89.gif)
+![ezgif-4-f3aba51b79](https://user-images.githubusercontent.com/7237762/224493389-fdd05f5a-7378-42a1-a6f3-dd86e12ffaae.gif)
