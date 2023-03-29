@@ -1,9 +1,9 @@
 
 import React from 'react'
-import settings from '../../settings'
-import {IGoogleWeatherContext, IGoogleWeatherParserData} from '../../types'
-import {GoogleWeatherContext} from './Contexts'
-import {style, selector, className, es, px, computed} from '../../utils'
+import settings from '../settings'
+import {IWeatherContext, IWeatherData} from '../types'
+import {WeatherContext} from './Contexts'
+import {style, selector, className, es, px, computed} from '../utils'
 
 interface IInitialClickState {
   left: number,
@@ -27,14 +27,14 @@ interface ICoordinates {
   p4y: number
 }
 
-interface IChartProps {
+interface IChart {
   settings?: {[key: string]: any}
-  gwc: IGoogleWeatherContext
+  wc: IWeatherContext
 }
 
-class Chart extends React.Component<IChartProps> {
+class Chart extends React.Component<IChart> {
 
-  constructor(props: IChartProps) {
+  constructor(props: IChart) {
     super(props)
     this.circleEvent = this.circleEvent.bind(this)
     this.viewboxEvent = this.viewboxEvent.bind(this)
@@ -49,7 +49,7 @@ class Chart extends React.Component<IChartProps> {
   mW = settings.windowW
   mH = settings.chartMinifiedH
   prevCircleIndex = 0
-  animation = {frameId: 0, duration: 1000, fn: (t: number) => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t}
+  animation = {frameId: 0, duration: 700, fn: (t: number) => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t}
   animationInitialized = false
   
   coordinates = {
@@ -67,9 +67,9 @@ class Chart extends React.Component<IChartProps> {
   styles = {
     dasharrayLine: {style: {stroke: '#cfcfcf', strokeWidth: 1, strokeDasharray: '3', opacity: 0}, prefix: '__dasharray-'},
     tooltip: {class: 'chart-container__tooltip', prefix: '__tooltip'},
-    line: {style: {stroke: 'rgb(201, 209, 217)', strokeWidth: 3}},
-    lineMinified: {style: {stroke: 'rgb(201, 209, 217)', strokeWidth: 1}},
-    circle: {r: 6, style: {fill: 'rgb(201, 209, 217)'}, activeColor: '#cfcfcf', prefix: '__circle-'},
+    line: {style: {stroke: 'darkslateblue', strokeWidth: 2}},
+    lineMinified: {style: {stroke: 'darkslateblue', strokeWidth: 1}},
+    circle: {r: 5, style: {fill: 'darkslateblue'}, activeColor: '#cfcfcf', prefix: '__circle-'},
     text: {style: {fill: '#b3b3b3', font: 'bold 12px "Roboto"'}},
     polygon: {style: {fill: '#16181d', strokeWidth: 1, stroke: '#16181d'}},
     viewbox: {class: 'chartminified-container__viewbox'},
@@ -108,7 +108,12 @@ class Chart extends React.Component<IChartProps> {
   }
 
   initEndCoordinates() {
-    this.pushCoordinates((this.props.gwc.data as IGoogleWeatherParserData).trange.map(o => +o.tm).slice(0, settings.chartDotLimit))
+    const wc = this.getWeatherContext()
+    this.pushCoordinates((wc.data as IWeatherData).trange.map(o => +o.tm).slice(0, settings.chartDotLimit))
+  }
+
+  getWeatherContext() {
+    return this.props.wc
   }
 
   generateCoordinates(temperatureList: number[], W: number, H: number): ICoordinates[] {
@@ -138,14 +143,14 @@ class Chart extends React.Component<IChartProps> {
   }
   
   generateChartElements(coordinates: ICoordinates[], minified: boolean) {
-    const data = this.props.gwc.data
-    const containsTrange = 'trange' in data
+    const wc = this.getWeatherContext()
+    const trange = 'trange' in wc.data
     const {dasharrayLine, line, lineMinified, circle, text, polygon} = this.styles
     const [circles, lines, texts, polygons, dasharrayLines]: any = [[], [], [], [], []]
     for (let i = 0; i < coordinates.length; i++) {
       const {x, xNext, y, yNext, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y} = coordinates[i]
       const notMinifiedAndGreaterZero = !minified && i > 0
-      const tm = containsTrange ? data.trange[i].tm : 0
+      const tm = trange ? (wc.data as IWeatherData).trange[i].tm : 0
       polygons.push(<polygon style={polygon.style} points={`${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y} ${p4x},${p4y}`} key={i} />)
       lines.push(<line style={minified ? lineMinified.style : line.style} x1={x} y1={y} x2={xNext} y2={yNext} key={i} />)
       if (notMinifiedAndGreaterZero) {
@@ -203,7 +208,7 @@ class Chart extends React.Component<IChartProps> {
 
   circleEvent(event: React.MouseEvent<SVGCircleElement>) {
     const [MOUSEOVER, MOUSEOUT] = ['mouseover', 'mouseout']
-    const {gwc: {data}} = this.props
+    const wc = this.getWeatherContext()
     const {dasharrayLine, tooltip, circle} = this.styles
     const eventType = event.type
     const circleElement = event.currentTarget
@@ -219,7 +224,7 @@ class Chart extends React.Component<IChartProps> {
     const [dasharrayElement, tooltipElement] = selectDasharrayTooltopCircle(circleIndex)
     if (eventType === MOUSEOVER) {
       const [prevDasharrayElement, prevTooltipElement, prevCircleElement] = selectDasharrayTooltopCircle(this.prevCircleIndex)
-      const {dts, tm} = (data as IGoogleWeatherParserData).trange[circleIndex]
+      const {dts} = (wc.data as IWeatherData).trange[circleIndex]
       tooltipElement.innerText = dts
       const tw = tooltipElement.offsetWidth
       const th = tooltipElement.offsetHeight
@@ -231,7 +236,7 @@ class Chart extends React.Component<IChartProps> {
       style(dasharrayElement, {opacity: 1})
       style(tooltipElement, {opacity: 1, visibility: 'visible', left: px(cx - tw / 2), top: px(cy < 32 ? cy + 10: cy - th - 10)})
       style(circleElement, {fill: circle.activeColor})
-      this.props.gwc.update(circleIndex)
+      wc.update(circleIndex)
     }
     else if (eventType === MOUSEOUT) {
       this.prevCircleIndex = circleIndex
@@ -325,5 +330,5 @@ class Chart extends React.Component<IChartProps> {
 
 }
 
-const component = (props: any) => <GoogleWeatherContext.Consumer>{gwc => <Chart {...props} gwc={gwc} />}</GoogleWeatherContext.Consumer>
+const component = (props: any) => <WeatherContext.Consumer>{wc => <Chart {...props} wc={wc} />}</WeatherContext.Consumer>
 export default component

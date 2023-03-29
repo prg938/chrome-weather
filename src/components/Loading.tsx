@@ -4,7 +4,7 @@ interface LoadingInterface {
 }
 
 const Loading: React.FunctionComponent<LoadingInterface> = ({text}) => {
-  return <span className="gw-temperature-loading">{text ? text : 'Loading'}</span>
+  return <span className="gw-temperature-loading">{text === '' ? 'Loading' : text }</span>
 }
 
 export default Loading

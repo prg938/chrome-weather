@@ -30,7 +30,6 @@
 
 body {
   background-color: rgb(35, 39, 47);
-  font-family: 'Roboto';
   color: rgb(201, 209, 217);
 }
 body.grabbing { cursor: grabbing; }
@@ -38,37 +37,30 @@ body.grabbing { cursor: grabbing; }
 
 /*gw-temperature*/
 .gw-temperature {
-  margin: 20px 0;
-}
-.gw-temperature .gw-temperature__wrapper {
+  margin: 20px 20px;
+  min-height: 125px;
   display: flex;
-  justify-content: center;
+  align-items: center;
 }
+
 .gw-temperature .gw-temperature__value {
-  font-size: 74px;
   color: black;
   font-weight: 600;
-  min-width: 140px;
   line-height: 1.2;
+}
+.gw-temperature .gw-temperature__t-wrapper {
+  display: flex;
 }
 .gw-temperature .gw-temperature__t {
   font-size: 53px;
 }
 .gw-temperature .gw-temperature__geo {
+  font-size: 32px;
+}
+
+.outside {
   font-size: 14px;
-}
-.gw-temperature .gw-temperature__geo > * {
-  vertical-align: top;
-}
-.gw-temperature__icon-wrapper {
-  min-width: 175px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.gw-temperature .gw-temperature__icon {
-  display: flex;
-  align-items: center;
+  color: black;
 }
 
 /*gw-stats*/
@@ -78,6 +70,7 @@ body.grabbing { cursor: grabbing; }
   font-size: 21px;
   background-color: darkslateblue;
   padding: 10px;
+  margin-bottom: 10px;
 }
 .gw-stats .outside {
   min-width: 140px;
@@ -88,35 +81,30 @@ body.grabbing { cursor: grabbing; }
 
 /*tabber*/
 .tabber {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
   font-size: 14px;
 }
+.tabber svg {
+  display: block;
+}
 .tabber__content {
-  margin-top: 20px;
+  margin-top: -8px;
 }
 .tabber__content a {
   text-decoration: none;
-  color: rgb(105, 103, 221);
+  color: black;
   font-weight: bold;
-}
-.tabber__content a:hover {
-  text-decoration: underline;
 }
 .tabber__tab {
   display: inline-block;
-  padding: 0 25px;
 }
-.tabber__tab:first-child { padding-left: 0; }
-.tabber__tab:last-child { padding-right: 0; }
-
 .tabber__tab .tabber__text {
-  border-bottom: 3px solid transparent;
-  font-size: 27px;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
+  font-size: 40px;
+  border-bottom: 0px solid transparent;
 }
 .tabber__tab.tabber__tab_current .tabber__text {
-  border-bottom: 3px solid rgb(105, 103, 221);
+  border-bottom: 0px solid rgb(105, 103, 221);
 }
 
 /*chart-container*/

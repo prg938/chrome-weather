@@ -1,14 +1,14 @@
 
+import {attr} from '../utils'
 import {useState, memo} from 'react'
-import {attr} from '../../utils'
 
-interface TabberInterface {
+interface ITabber {
   list: any[]
   pure?: boolean
 }
 
-// <Tabber list={[['A', <Chart />], ['B', <div></div>]]} />
-const Tabber: React.FunctionComponent<TabberInterface> = memo(({list}) => {
+// <Tabber list={[['A', <div></div>], ['B', <div></div>]]} />
+const Tabber: React.FunctionComponent<ITabber> = memo(({list}) => {
   
   const [currentId, setId] = useState<string>('0')
   
@@ -33,7 +33,7 @@ const Tabber: React.FunctionComponent<TabberInterface> = memo(({list}) => {
       content = _content
     }
     return <div className={specifyClass(indexStringified)} data-tab={indexStringified} key={indexStringified}>
-      <span className="tabber__text" data-tab-text>{name}</span>
+      <div className="tabber__text" data-tab-text>{name}</div>
     </div>
   })
 

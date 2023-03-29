@@ -1,6 +1,10 @@
-import React from 'react'
-import {render} from 'react-dom'
-import './index.css'
-import {GoogleWeather} from './components/GoogleWeather'
 
-render(<GoogleWeather />, document.getElementById('root'))
+import './index.css'
+import './styles/index.css'
+import {render} from 'react-dom'
+import {Weather} from './components'
+
+render(
+  <Weather />,
+  document.getElementById('root')
+)

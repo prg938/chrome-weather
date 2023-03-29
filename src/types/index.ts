@@ -1,5 +1,5 @@
 
-interface IGoogleWeatherParserData {
+export interface IWeatherData {
   temperature: any
   geo: any
   precipitation: any
@@ -9,11 +9,9 @@ interface IGoogleWeatherParserData {
   trange: {tm: any, dts: any, p: any, h: any, c: any, ws: any, iu: any}[]
 }
 
-interface IGoogleWeatherContext {
-  data: IGoogleWeatherParserData | {}
-  circleIndex: number
-  update: (circleIndex: number) => any
+export interface IWeatherContext {
+  data: IWeatherData | {}
+  ci: number
   geo: any
+  update: (ci: number) => any
 }
- 
-export type {IGoogleWeatherContext, IGoogleWeatherParserData}

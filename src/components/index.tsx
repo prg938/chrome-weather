@@ -1,8 +1,6 @@
 
-import '../../styles/index.css'
-import {useState, useEffect, useMemo} from 'react'
-import {GoogleWeatherContext} from './Contexts'
-import {merge, px} from '../../utils'
+import {GoLogoGithub} from 'react-icons/go'
+import {merge, px} from '../utils'
 import Temperature from './Temperature'
 import Precipitation from './Precipitation'
 import Humidity from './Humidity'
@@ -10,27 +8,24 @@ import Wind from './Wind'
 import Time from './Time'
 import Tabber from './Tabber'
 import Chart from './Chart'
-import settings from '../../settings'
-import {LinkExternal, LinkGithub} from './Links'
-import {GoLogoGithub, GoLinkExternal} from 'react-icons/go'
+import settings from '../settings'
+import {LinkGithub} from './Links'
+import {useState, useEffect, useMemo} from 'react'
+import {WeatherContext} from './Contexts'
 
-const GoogleWeather: React.FunctionComponent = () => {
-  
-  const [data, update] = useState<any>({
+const Weather: React.FunctionComponent = () => {
+  const [data, update] = useState({
     data: {},
-    circleIndex: null,
+    ci: null,
     geo: null
   })
   const upd = (data: any) => update((prevData: any) => merge(prevData, data))
-  const gwc = merge(data, {update: (circleIndex: number) => upd({circleIndex})})
-
-  const links = useMemo(() => [
-    [<GoLinkExternal />, <LinkExternal />],
-    [<GoLogoGithub />, <LinkGithub />]
-  ], [])
+  const wc = merge(data, {update: (ci: number) => upd({ci})})
+  
+  const links = useMemo(() => [[<GoLogoGithub />, <LinkGithub />]], [])
 
   useEffect(() => {
-    chrome.runtime.sendMessage({type: 'data'}, response => {
+    chrome.runtime.sendMessage({type: 'data'}, (response) => {
       if (response) {
         const {data, geo} = response
         chrome.action.setBadgeText({text: data.temperature + '°'})
@@ -40,7 +35,7 @@ const GoogleWeather: React.FunctionComponent = () => {
     })
   }, [])
 
-  return <GoogleWeatherContext.Provider value={gwc}>
+  return <WeatherContext.Provider value={wc}>
     <div style={{width: px(settings.windowW), height: px(settings.windowH)}}>
       <div className="gw-top">
         <div className="gw-temperature">
@@ -56,7 +51,7 @@ const GoogleWeather: React.FunctionComponent = () => {
       <Chart />
       <Tabber list={links} />
     </div>
-  </GoogleWeatherContext.Provider>
+  </WeatherContext.Provider>
 }
 
-export {GoogleWeather}
+export {Weather}

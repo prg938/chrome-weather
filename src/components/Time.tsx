@@ -1,5 +1,5 @@
 
-import {useResult} from "../../customHooks"
+import {useResult} from "../customHooks"
 import {WiTime3} from  'react-icons/wi'
 
 interface ITime {

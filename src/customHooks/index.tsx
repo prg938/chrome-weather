@@ -1,20 +1,25 @@
 
+import Loading from '../components/Loading'
+import {WeatherContext} from "../components/Contexts"
+import {IWeatherData} from '../types'
 import {useContext} from 'react'
-import {GoogleWeatherContext} from "../components/GoogleWeather/Contexts"
-import Loading from '../components/GoogleWeather/Loading'
-import {IGoogleWeatherParserData} from '../types'
 
-type S = keyof IGoogleWeatherParserData['trange'][0]
-type F = keyof IGoogleWeatherParserData | 'dts'
+type TUseResult = (
+  f: keyof IWeatherData | 'dts', 
+  s: keyof IWeatherData['trange'][0],
+  t?: string
+) => any
 
-const useResult = (propertyFull: F, propertyShort: S, loadingText = '...') => {
-  const {data, circleIndex} = useContext(GoogleWeatherContext)
+const useResult: TUseResult = (propertyFull, propertyShort, loadingText = '-') => {
+  const {data, ci} = useContext(WeatherContext)
   let result
-  if ('trange' in data) {
-    if (circleIndex) result = (data as IGoogleWeatherParserData).trange[circleIndex][propertyShort]
+  if (Object.prototype.hasOwnProperty.call(data, 'trange')) {
+    if (ci) {
+      result = (data as IWeatherData).trange[ci][propertyShort]
+    }
     else {
       if (propertyFull === 'dts') result = null
-      else result = (data as IGoogleWeatherParserData)[propertyFull]
+      else result = (data as IWeatherData)[propertyFull]
     }
   }
   else result = <Loading text={loadingText} />

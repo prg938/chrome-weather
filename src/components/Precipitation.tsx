@@ -1,5 +1,5 @@
 
-import {useResult} from "../../customHooks"
+import {useResult} from "../customHooks"
 import {WiCloudDown} from 'react-icons/wi'
 
 interface IPrecipitation {
