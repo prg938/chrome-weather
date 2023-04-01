@@ -29,7 +29,7 @@
 }
 
 body {
-  background-color: rgb(35, 39, 47);
+  background-color: rgb(26, 28, 30);
   color: rgb(201, 209, 217);
 }
 body.grabbing { cursor: grabbing; }
