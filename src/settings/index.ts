@@ -1,6 +1,6 @@
 
 const settings = {
-  windowW: 460,
+  windowW: 420,
   windowH: 395,
   chartW: 1500,
   chartH: 75,

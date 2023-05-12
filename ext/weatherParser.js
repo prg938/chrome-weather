@@ -2,13 +2,15 @@
 
 class GoogleWeatherParser {
   static parse(page) {
-    const xsequenceToCharacter = (sequence) => String.fromCharCode(parseInt(sequence, 16))
+    const sequenceToCharacter = (sequence) => String.fromCharCode(parseInt(sequence, 16))
     const xsequenceRE = /\\x([0-9a-fA-F]{2})/g
+    const usequenceRE = /\\\\u([0-9a-fA-F]{4})/g
     const backslashes = [/\\\\\"/g, '\\"']
     const pmcContainment = page.match(/var pmc=\'([\s\S]*?)\'/)
     const string = (pmcContainment && pmcContainment[1]) || '{}'
     const parsed = string
-      .replace(xsequenceRE, (_, sequence) => xsequenceToCharacter(sequence))// \x46 -> F
+      .replace(xsequenceRE, (_, sequence) => sequenceToCharacter(sequence))// \x46 -> F
+      .replace(usequenceRE, (_, sequence) => sequenceToCharacter(sequence))// \\u042f -> Я
       .replace(backslashes[0], backslashes[1])// \\" => \"
     const data = JSON.parse(parsed)
     return data
