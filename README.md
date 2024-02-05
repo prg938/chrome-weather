@@ -1,4 +1,4 @@
-Weather extension for Google Chrome. Written on TypeScript
+Weather extension for Google Chrome. Written on TypeScript and React
 
 ![ezgif-3-bb6fab5894](https://user-images.githubusercontent.com/7237762/229301735-0ba10058-6239-4417-b8c0-8aa001aa7388.gif)
 
